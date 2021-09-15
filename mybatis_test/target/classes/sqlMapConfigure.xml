@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+  <settings>
+    <!--    全局性地开启或关闭所有映射器配置文件中已配置的任何缓存。 开启二级缓存-->
+    <setting name="cacheEnabled" value="true"/>
+
+    <!--    控制台打印SQL-->
+    <setting name="logImpl" value="STDOUT_LOGGING"/>
+  </settings>
+
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql:///test?useSSL=false"/>
+        <property name="username" value="root"/>
+        <property name="password" value="my-secret-pw"/>
+      </dataSource>
+    </environment>
+  </environments>
+
+  <mappers>
+    <!--    <mapper resource="org/mybatis/example/BlogMapper.xml"/>-->
+    <mapper class="com.mybatis.test.mapper.UserMapper"/>
+  </mappers>
+</configuration>

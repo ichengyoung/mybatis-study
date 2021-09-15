@@ -1,0 +1,29 @@
+<mappers namespace="com.mybatis.example.mapper.UserMapper">
+
+  <!--每个mapper的ID是：namespace.id-->
+  <mapper id="selectList" resultType="com.mybatis.example.bean.User">
+    select * from user
+  </mapper>
+
+  <mapper id="selectOne" resultType="com.mybatis.example.bean.User"
+    parameterType="com.mybatis.example.bean.User">
+    <!--
+    正常preparedStatement: select * from user where id = ? and name = ?
+    这里使用占位符 需要映射属性
+    -->
+    select * from user where id = #{id} and name = #{name}
+  </mapper>
+
+  <mapper id="update" parameterType="com.mybatis.example.bean.User">
+    update user set name = #{name} where id = #{id}
+  </mapper>
+
+  <mapper id="delete" parameterType="com.mybatis.example.bean.User">
+    delete from user where id = #{id}
+  </mapper>
+
+  <mapper id="add" parameterType="com.mybatis.example.bean.User"
+    resultType="com.mybatis.example.bean.User">
+    insert into user values(#{id},#{name})
+  </mapper>
+</mappers>
