@@ -72,3 +72,9 @@ class Plugin implements InvocationHandler {
 
 ```
 
+### docker
+
+* redis
+  `docker run -itd --name localhost -p 6379:6379 redis`
+* mysql
+  `docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql:5.7`
