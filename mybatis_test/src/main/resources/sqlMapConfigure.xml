@@ -6,11 +6,15 @@
 
   <settings>
     <!--    全局性地开启或关闭所有映射器配置文件中已配置的任何缓存。 开启二级缓存-->
-    <setting name="cacheEnabled" value="true"/>
+    <setting name="cacheEnabled" value="false"/>
 
     <!--    控制台打印SQL-->
     <setting name="logImpl" value="STDOUT_LOGGING"/>
   </settings>
+
+  <plugins>
+    <plugin interceptor="com.mybatis.test.plugin.MyPlugin"/>
+  </plugins>
 
   <environments default="development">
     <environment id="development">
