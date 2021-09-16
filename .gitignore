@@ -1,5 +1,7 @@
 /.idea
 /target
+/*/target/
+
 lzt-mobile-api.iml
 /.classpath
 /.project
