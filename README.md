@@ -31,3 +31,44 @@
 * Type ParameterizedType 判断具体方法
 * 反射 处理参数
 * 内省 处理返回值
+
+### mybatis测试 mybatis_test项目
+
+## 插件
+
+1.自定义插件就是一个拦截器，需要实现Interceptor接口
+
+```java
+interface Interceptor {
+
+  //做增强
+  Object intercept(Invocation invocation) throws Throwable;
+
+  //把自己加入到拦截器链
+  default Object plugin(Object target) {
+    return Plugin.wrap(target, this);
+  }
+}
+```
+
+2.Plugin
+
+```java
+class Plugin implements InvocationHandler {
+
+  //动态代理。这里new 了 一个自己，因为自己也是一个InvocationHandler
+  wrap(Object target, Interceptor interceptor) {
+    Proxy.newProxyInstance(
+        type.getClassLoader(),
+        interfaces,
+        new Plugin(target, interceptor, signatureMap));
+  }
+
+  //调用插件的intercept方法
+  invoke(Object proxy, Method method, Object[] args) {
+    interceptor.intercept(new Invocation(target, method, args));
+  }
+}
+
+```
+
